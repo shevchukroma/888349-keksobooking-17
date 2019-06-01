@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Рома](https://up.htmlacademy.ru/javascript/17/user/888349).
-* Наставник: [Владимир Шишлянников].
+* Наставник: [Владимир Шишлянников] (https://htmlacademy.ru/profile/id1082173).
 
 ---
 
