@@ -14,10 +14,13 @@ function getRandomInt(min, max) {
 
 function getAdverts() {
   var adverts = [];
+  var author;
+  var offer;
+  var location;
   for (var i = 0; i < 8; i++) {
-    var author = {avatar: 'img/avatars/user0' + (i + 1) + '.png'};
-    var offer = {type: offerTypes[getRandomInt(0, offerTypes.length)]};
-    var location = {x: getRandomInt(0, 1200), y: getRandomInt(130, 630)};
+    author = {avatar: 'img/avatars/user0' + (i + 1) + '.png'};
+    offer = {type: offerTypes[getRandomInt(0, offerTypes.length)]};
+    location = {x: getRandomInt(0, 1200), y: getRandomInt(130, 630)};
     adverts.push({author: author, offer: offer, location: location});
   }
   return adverts;
