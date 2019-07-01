@@ -28,8 +28,6 @@ function getAdverts() {
   return adverts;
 }
 
-console.log(BUTTON_WIDTH);
-
 function renderButton(offer) {
   var cloneButton = button.cloneNode(true);
   button.style.left = offer.location.x + 'px';
