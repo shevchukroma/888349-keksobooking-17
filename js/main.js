@@ -11,27 +11,27 @@ var map = document.querySelector('.map');
 var form = document.querySelector('.ad-form');
 var formInputs = document.querySelectorAll('.ad-form input');
 var formSelects = document.querySelectorAll('.ad-form select');
-var adress = document.querySelector('#address');
+var adressMarker = document.querySelector('#address');
 
 for (var i = 0; i < formInputs.length; i++) {
   formInputs[i].setAttribute('disabled', 'disabled');
 }
 
-for (var i = 0; i < formSelects.length; i++) {
+for (i = 0; i < formSelects.length; i++) {
   formSelects[i].setAttribute('disabled', 'disabled');
 }
 
 mainButton.addEventListener('click', function () {
   map.classList.remove('map--faded');
   form.classList.remove('ad-form--disabled');
-  for (var i = 0; i < 8; i++) {
+  for (i = 0; i < 8; i++) {
     var newButton = renderButton(offersMock[i]);
     buttonsList.appendChild(newButton);
   }
-  for (var i = 0; i < formInputs.length; i++) {
+  for (i = 0; i < formInputs.length; i++) {
     formInputs[i].disabled = false;
   }
-  for (var i = 0; i < formSelects.length; i++) {
+  for (i = 0; i < formSelects.length; i++) {
     formSelects[i].disabled = false;
   }
 });
@@ -42,14 +42,14 @@ function getRandomInt(min, max) {
   return rand;
 }
 
-address.value = parseInt(mainButton.style.left) + ', ' + parseInt(mainButton.style.top);
+adressMarker.value = parseInt(mainButton.style.left, 10) + ', ' + parseInt(mainButton.style.top, 10);
 
 function getAdverts() {
   var adverts = [];
   var author;
   var offer;
   var location;
-  for (var i = 0; i < 8; i++) {
+  for (i = 0; i < 8; i++) {
     author = {avatar: 'img/avatars/user0' + (i + 1) + '.png'};
     offer = {type: offerTypes[getRandomInt(0, offerTypes.length)]};
     location = {x: getRandomInt(0, 1200) - BUTTON_WIDTH / 2, y: getRandomInt(130, 630) - BUTTON_HEIGHT};
