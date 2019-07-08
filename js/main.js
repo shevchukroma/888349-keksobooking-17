@@ -1,18 +1,48 @@
 'use strict';
 
-var offerTypes = ['palace', 'flat', 'house', 'bungalo'];
-var button = document.querySelector('.map__pin');
-var buttonsList = document.querySelector('.map__pins');
 var BUTTON_WIDTH = 65;
 var BUTTON_HEIGHT = 82;
+var offerTypes = ['palace', 'flat', 'house', 'bungalo'];
+var button = document.querySelector('.map__pin');
+var mainButton = document.querySelector('.map__pin--main');
+var buttonsList = document.querySelector('.map__pins');
 var offersMock = getAdverts();
 var map = document.querySelector('.map');
+var form = document.querySelector('.ad-form');
+var formInputs = document.querySelectorAll('.ad-form input');
+var formSelects = document.querySelectorAll('.ad-form select');
+var adress = document.querySelector('#address');
+
+for (var i = 0; i < formInputs.length; i++) {
+  formInputs[i].setAttribute('disabled', 'disabled');
+}
+
+for (var i = 0; i < formSelects.length; i++) {
+  formSelects[i].setAttribute('disabled', 'disabled');
+}
+
+mainButton.addEventListener('click', function () {
+  map.classList.remove('map--faded');
+  form.classList.remove('ad-form--disabled');
+  for (var i = 0; i < 8; i++) {
+    var newButton = renderButton(offersMock[i]);
+    buttonsList.appendChild(newButton);
+  }
+  for (var i = 0; i < formInputs.length; i++) {
+    formInputs[i].disabled = false;
+  }
+  for (var i = 0; i < formSelects.length; i++) {
+    formSelects[i].disabled = false;
+  }
+});
 
 function getRandomInt(min, max) {
   var rand = min + Math.random() * (max + 1 - min);
   rand = Math.floor(rand);
   return rand;
 }
+
+address.value = parseInt(mainButton.style.left) + ', ' + parseInt(mainButton.style.top);
 
 function getAdverts() {
   var adverts = [];
@@ -30,16 +60,9 @@ function getAdverts() {
 
 function renderButton(offer) {
   var cloneButton = button.cloneNode(true);
-  button.style.left = offer.location.x + 'px';
-  button.style.top = offer.location.y + 'px';
-  button.childNodes[1].src = offer.author.avatar;
-  button.childNodes[1].alt = offer.offer.type;
+  cloneButton.style.left = offer.location.x + 'px';
+  cloneButton.style.top = offer.location.y + 'px';
+  cloneButton.childNodes[1].src = offer.author.avatar;
+  cloneButton.childNodes[1].alt = offer.offer.type;
   return cloneButton;
 }
-
-for (var i = 0; i < 8; i++) {
-  var newButton = renderButton(offersMock[i]);
-  buttonsList.appendChild(newButton);
-}
-
-map.classList.remove('map--faded');
