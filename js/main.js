@@ -17,7 +17,7 @@ var inputPrice = document.querySelector('#price');
 var timeIn = document.querySelector('#timein');
 var timeOut = document.querySelector('#timeout');
 
-selectOffers.addEventListener('click', function () {  
+selectOffers.addEventListener('click', function () {
   if (selectOffers[0].selected) {
     inputPrice.min = '0';
     inputPrice.placeholder = '0';
