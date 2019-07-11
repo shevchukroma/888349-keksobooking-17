@@ -17,7 +17,7 @@ var inputPrice = document.querySelector('#price');
 var timeIn = document.querySelector('#timein');
 var timeOut = document.querySelector('#timeout');
 
-selectOffers.addEventListener('click', function () {
+selectOffers.addEventListener('change', function () {
   if (selectOffers[0].selected) {
     inputPrice.min = '0';
     inputPrice.placeholder = '0';
@@ -33,7 +33,7 @@ selectOffers.addEventListener('click', function () {
   }
 });
 
-timeIn.addEventListener('click', function () {
+timeIn.addEventListener('change', function () {
   if (timeIn[0].selected) {
     timeOut[0].selected = true;
   } else if (timeIn[1].selected) {
@@ -43,7 +43,7 @@ timeIn.addEventListener('click', function () {
   }
 });
 
-timeOut.addEventListener('click', function () {
+timeOut.addEventListener('change', function () {
   if (timeOut[0].selected) {
     timeIn[0].selected = true;
   } else if (timeOut[1].selected) {
