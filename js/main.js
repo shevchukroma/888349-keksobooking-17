@@ -16,6 +16,64 @@ var selectOffers = document.querySelector('#type');
 var inputPrice = document.querySelector('#price');
 var timeIn = document.querySelector('#timein');
 var timeOut = document.querySelector('#timeout');
+var maxLeft = 1200;
+var minLeft = 0;
+var minHeight = 130;
+var maxHeight = 630;
+
+mainButton.addEventListener('mousedown', function (evt) {
+  evt.preventDefault();
+  map.classList.remove('map--faded');
+  form.classList.remove('ad-form--disabled');  
+  for (i = 0; i < 8; i++) {
+    var newButton = renderButton(offersMock[i]);
+    buttonsList.appendChild(newButton);
+  }
+  for (i = 0; i < formInputs.length; i++) {
+    formInputs[i].disabled = false;
+  }
+  for (i = 0; i < formSelects.length; i++) {
+    formSelects[i].disabled = false;
+  }
+  adressMarker.setAttribute('disabled', 'disabled');
+  var startCoords = {
+    x: evt.clientX,
+    y: evt.clientY
+  }
+
+  var onMouseMove = function (moveEvt) {
+    var shift = {
+      x: startCoords.x - moveEvt.clientX,
+      y: startCoords.y - moveEvt.clientY
+    }
+    adressMarker.value = Math.floor(parseInt(mainButton.style.left, 10) + BUTTON_WIDTH / 2) + ', ' + (parseInt(mainButton.style.top, 10) - BUTTON_HEIGHT);
+    startCoords = {
+      x: moveEvt.clientX,
+      y: moveEvt.clientY
+    }
+
+    mainButton.style.left = (mainButton.offsetLeft - shift.x) + 'px';
+    mainButton.style.top = (mainButton.offsetTop - shift.y) + 'px';
+    if (parseInt(mainButton.style.left) > maxLeft - BUTTON_WIDTH / 2) {
+      mainButton.style.left = maxLeft - BUTTON_WIDTH / 2 + 'px';
+    } else if (parseInt(mainButton.style.left) < minLeft - BUTTON_WIDTH / 2) {
+      mainButton.style.left = minLeft - BUTTON_WIDTH / 2 + 'px';
+    } else if (parseInt(mainButton.style.top) > maxHeight) {
+      mainButton.style.top = maxHeight + 'px';
+    } else if (parseInt(mainButton.style.top) < minHeight) {
+      mainButton.style.top = minHeight + 'px';
+    }
+  };
+
+  var onMouseUp = function (upEvt) {
+    upEvt.preventDefault();
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+    adressMarker.value = Math.floor(parseInt(mainButton.style.left, 10) + BUTTON_WIDTH / 2) + ', ' + (parseInt(mainButton.style.top, 10) - BUTTON_HEIGHT);
+  };
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+});
 
 selectOffers.addEventListener('change', function () {
   if (selectOffers[0].selected) {
@@ -61,29 +119,11 @@ for (i = 0; i < formSelects.length; i++) {
   formSelects[i].setAttribute('disabled', 'disabled');
 }
 
-mainButton.addEventListener('click', function () {
-  map.classList.remove('map--faded');
-  form.classList.remove('ad-form--disabled');
-  for (i = 0; i < 8; i++) {
-    var newButton = renderButton(offersMock[i]);
-    buttonsList.appendChild(newButton);
-  }
-  for (i = 0; i < formInputs.length; i++) {
-    formInputs[i].disabled = false;
-  }
-  for (i = 0; i < formSelects.length; i++) {
-    formSelects[i].disabled = false;
-  }
-  adressMarker.setAttribute('disabled', 'disabled');
-});
-
 function getRandomInt(min, max) {
   var rand = min + Math.random() * (max + 1 - min);
   rand = Math.floor(rand);
   return rand;
 }
-
-adressMarker.value = parseInt(mainButton.style.left, 10) + ', ' + parseInt(mainButton.style.top, 10);
 
 function getAdverts() {
   var adverts = [];
