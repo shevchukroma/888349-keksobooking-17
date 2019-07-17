@@ -1,7 +1,6 @@
 'use strict';
 
 var BUTTON_WIDTH = 65;
-var BUTTON_HEIGHT = 82;
 var offerTypes = ['palace', 'flat', 'house', 'bungalo'];
 var button = document.querySelector('.map__pin');
 var mainButton = document.querySelector('.map__pin--main');
@@ -58,13 +57,12 @@ mainButton.addEventListener('mousedown', function (evt) {
       mainButton.style.top = maxHeight + 'px';
     } else if (parseInt(mainButton.style.top, 10) <= minHeight) {
       mainButton.style.top = minHeight + 'px';
-    } 
+    }
     if (parseInt(mainButton.style.left, 10) >= maxLeft - BUTTON_WIDTH / 2) {
       mainButton.style.left = maxLeft - BUTTON_WIDTH / 2 + 'px';
     } else if (parseInt(mainButton.style.left, 10) <= minLeft - BUTTON_WIDTH / 2) {
       mainButton.style.left = minLeft - BUTTON_WIDTH / 2 + 'px';
-    } 
-    console.log(mainButton.style.top);
+    }
   };
 
   var onMouseUp = function (upEvt) {
