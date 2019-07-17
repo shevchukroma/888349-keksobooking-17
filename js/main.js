@@ -46,7 +46,7 @@ mainButton.addEventListener('mousedown', function (evt) {
       x: startCoords.x - moveEvt.clientX,
       y: startCoords.y - moveEvt.clientY
     };
-    adressMarker.value = Math.floor(parseInt(mainButton.style.left, 10) + BUTTON_WIDTH / 2) + ', ' + (parseInt(mainButton.style.top, 10) - BUTTON_HEIGHT);
+    adressMarker.value = Math.ceil(parseInt(mainButton.style.left, 10) + BUTTON_WIDTH / 2) + ', ' + (parseInt(mainButton.style.top, 10));
     startCoords = {
       x: moveEvt.clientX,
       y: moveEvt.clientY
@@ -54,22 +54,24 @@ mainButton.addEventListener('mousedown', function (evt) {
 
     mainButton.style.left = (mainButton.offsetLeft - shift.x) + 'px';
     mainButton.style.top = (mainButton.offsetTop - shift.y) + 'px';
-    if (parseInt(mainButton.style.left, 10) > maxLeft - BUTTON_WIDTH / 2) {
-      mainButton.style.left = maxLeft - BUTTON_WIDTH / 2 + 'px';
-    } else if (parseInt(mainButton.style.left, 10) < minLeft - BUTTON_WIDTH / 2) {
-      mainButton.style.left = minLeft - BUTTON_WIDTH / 2 + 'px';
-    } else if (parseInt(mainButton.style.top, 10) > maxHeight) {
+    if (parseInt(mainButton.style.top, 10) >= maxHeight) {
       mainButton.style.top = maxHeight + 'px';
-    } else if (parseInt(mainButton.style.top, 10) < minHeight) {
+    } else if (parseInt(mainButton.style.top, 10) <= minHeight) {
       mainButton.style.top = minHeight + 'px';
-    }
+    } 
+    if (parseInt(mainButton.style.left, 10) >= maxLeft - BUTTON_WIDTH / 2) {
+      mainButton.style.left = maxLeft - BUTTON_WIDTH / 2 + 'px';
+    } else if (parseInt(mainButton.style.left, 10) <= minLeft - BUTTON_WIDTH / 2) {
+      mainButton.style.left = minLeft - BUTTON_WIDTH / 2 + 'px';
+    } 
+    console.log(mainButton.style.top);
   };
 
   var onMouseUp = function (upEvt) {
     upEvt.preventDefault();
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', onMouseUp);
-    adressMarker.value = Math.floor(parseInt(mainButton.style.left, 10) + BUTTON_WIDTH / 2) + ', ' + (parseInt(mainButton.style.top, 10) - BUTTON_HEIGHT);
+    adressMarker.value = Math.floor(parseInt(mainButton.style.left, 10) + BUTTON_WIDTH / 2) + ', ' + (parseInt(mainButton.style.top, 10));
   };
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
@@ -133,7 +135,7 @@ function getAdverts() {
   for (i = 0; i < 8; i++) {
     author = {avatar: 'img/avatars/user0' + (i + 1) + '.png'};
     offer = {type: offerTypes[getRandomInt(0, offerTypes.length)]};
-    location = {x: getRandomInt(0, 1200) - BUTTON_WIDTH / 2, y: getRandomInt(130, 630) - BUTTON_HEIGHT};
+    location = {x: getRandomInt(0, 1200) - BUTTON_WIDTH / 2, y: getRandomInt(130, 630)};
     adverts.push({author: author, offer: offer, location: location});
   }
   return adverts;
