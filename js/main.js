@@ -1,6 +1,7 @@
 'use strict';
 
-var BUTTON_WIDTH = 65;
+var BUTTON_HEIGHT = 84;
+var BUTTON_WIDTH = 62;
 var offerTypes = ['palace', 'flat', 'house', 'bungalo'];
 var button = document.querySelector('.map__pin');
 var mainButton = document.querySelector('.map__pin--main');
@@ -45,7 +46,7 @@ mainButton.addEventListener('mousedown', function (evt) {
       x: startCoords.x - moveEvt.clientX,
       y: startCoords.y - moveEvt.clientY
     };
-    adressMarker.value = Math.ceil(parseInt(mainButton.style.left, 10) + BUTTON_WIDTH / 2) + ', ' + (parseInt(mainButton.style.top, 10));
+    adressMarker.value = parseInt(mainButton.style.left, 10) + BUTTON_WIDTH / 2 + ', ' + (parseInt(mainButton.style.top, 10) + BUTTON_HEIGHT);
     startCoords = {
       x: moveEvt.clientX,
       y: moveEvt.clientY
@@ -53,10 +54,10 @@ mainButton.addEventListener('mousedown', function (evt) {
 
     mainButton.style.left = (mainButton.offsetLeft - shift.x) + 'px';
     mainButton.style.top = (mainButton.offsetTop - shift.y) + 'px';
-    if (parseInt(mainButton.style.top, 10) >= maxHeight) {
-      mainButton.style.top = maxHeight + 'px';
-    } else if (parseInt(mainButton.style.top, 10) <= minHeight) {
-      mainButton.style.top = minHeight + 'px';
+    if (parseInt(mainButton.style.top, 10) + BUTTON_HEIGHT >= maxHeight) {
+      mainButton.style.top = maxHeight - BUTTON_HEIGHT + 'px';
+    } else if (parseInt(mainButton.style.top, 10) + BUTTON_HEIGHT <= minHeight) {
+      mainButton.style.top = minHeight - BUTTON_HEIGHT + 'px';
     }
     if (parseInt(mainButton.style.left, 10) >= maxLeft - BUTTON_WIDTH / 2) {
       mainButton.style.left = maxLeft - BUTTON_WIDTH / 2 + 'px';
@@ -69,7 +70,7 @@ mainButton.addEventListener('mousedown', function (evt) {
     upEvt.preventDefault();
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', onMouseUp);
-    adressMarker.value = Math.floor(parseInt(mainButton.style.left, 10) + BUTTON_WIDTH / 2) + ', ' + (parseInt(mainButton.style.top, 10));
+    adressMarker.value = parseInt(mainButton.style.left, 10) + BUTTON_WIDTH / 2 + ', ' + (parseInt(mainButton.style.top, 10) + BUTTON_HEIGHT);
   };
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
