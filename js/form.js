@@ -7,6 +7,8 @@
   var timeOut = document.querySelector('#timeout');
   var formInputs = document.querySelectorAll('.ad-form input');
   var formSelects = document.querySelectorAll('.ad-form select');
+  var adressMarker = document.querySelector('#address');
+  var mainButton = document.querySelector('.map__pin--main');
 
   selectOffers.addEventListener('change', function () {
     if (selectOffers[0].selected) {
@@ -50,5 +52,22 @@
 
   for (i = 0; i < formSelects.length; i++) {
     formSelects[i].setAttribute('disabled', 'disabled');
+  }
+
+  window.enableForm = function () {    
+    for (i = 0; i < formInputs.length; i++) {
+      formInputs[i].disabled = false;
+    }
+    for (i = 0; i < formSelects.length; i++) {
+      formSelects[i].disabled = false;
+    }
+  }
+
+  window.disableForm = function () {
+    adressMarker.setAttribute('disabled', 'disabled');
+  }
+
+  window.setAddressValue = function (val) {    
+    adressMarker.value = parseInt(val.left, 10) + window.getButtonWidth() / 2 + ', ' + (parseInt(val.top, 10) + window.getButtonHeight());
   }
 })();
