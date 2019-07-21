@@ -25,5 +25,5 @@
     cloneButton.childNodes[1].src = offer.author.avatar;
     cloneButton.childNodes[1].alt = offer.offer.type;
     return cloneButton;
-  }
+  };
 })();
