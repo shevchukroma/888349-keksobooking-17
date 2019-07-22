@@ -20,7 +20,6 @@
       buttonsList.appendChild(newButton);
     }
     window.enableForm();
-    window.disableForm();
     var startCoords = {
       x: evt.clientX,
       y: evt.clientY

@@ -45,16 +45,10 @@
     }
   });
 
-  for (var i = 0; i < formInputs.length; i++) {
-    formInputs[i].setAttribute('disabled', 'disabled');
-  }
 
-  for (i = 0; i < formSelects.length; i++) {
-    formSelects[i].setAttribute('disabled', 'disabled');
-  }
 
   window.enableForm = function () {
-    for (i = 0; i < formInputs.length; i++) {
+    for (var i = 0; i < formInputs.length; i++) {
       formInputs[i].disabled = false;
     }
     for (i = 0; i < formSelects.length; i++) {
@@ -63,8 +57,16 @@
   };
 
   window.disableForm = function () {
-    adressMarker.setAttribute('disabled', 'disabled');
-  };
+    for (var i = 0; i < formInputs.length; i++) {
+      formInputs[i].setAttribute('disabled', 'disabled');
+    }
+  
+    for (i = 0; i < formSelects.length; i++) {
+      formSelects[i].setAttribute('disabled', 'disabled');
+    }
+  }();
+
+  adressMarker.setAttribute('disabled', 'disabled');
 
   window.setAddressValue = function (val) {
     adressMarker.value = parseInt(val.left, 10) + window.getButtonWidth() / 2 + ', ' + (parseInt(val.top, 10) + window.getButtonHeight());
