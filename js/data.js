@@ -15,5 +15,5 @@
       adverts.push({author: author, offer: offer, location: location});
     }
     return adverts;
-  }(); 
+  }();
 })();

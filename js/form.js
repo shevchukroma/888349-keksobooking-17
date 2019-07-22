@@ -58,7 +58,7 @@
     for (var i = 0; i < formInputs.length; i++) {
       formInputs[i].setAttribute('disabled', 'disabled');
     }
-  
+
     for (i = 0; i < formSelects.length; i++) {
       formSelects[i].setAttribute('disabled', 'disabled');
     }
