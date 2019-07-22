@@ -21,7 +21,7 @@
       buttonsList.appendChild(newButton);
     }
     window.enableForm();
-    window.setAdressDisable();
+    window.disableAddressMarker();
     var startCoords = {
       x: evt.clientX,
       y: evt.clientY

@@ -64,7 +64,7 @@
     }
   }();
 
-  window.setAdressDisable = function () {
+  window.disableAddressMarker = function () {
     adressMarker.setAttribute('disabled', 'disabled');
   };
 
