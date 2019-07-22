@@ -10,16 +10,18 @@
   var minLeft = 0;
   var minHeight = 130;
   var maxHeight = 630;
+  var newButton;
 
   mainButton.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
     map.classList.remove('map--faded');
     form.classList.remove('ad-form--disabled');
     for (var i = 0; i < 8; i++) {
-      var newButton = window.renderButton(offersMock[i]);
+      newButton = window.renderButton(offersMock[i]);
       buttonsList.appendChild(newButton);
     }
     window.enableForm();
+    window.setAdressDisable();
     var startCoords = {
       x: evt.clientX,
       y: evt.clientY

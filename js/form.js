@@ -45,8 +45,6 @@
     }
   });
 
-
-
   window.enableForm = function () {
     for (var i = 0; i < formInputs.length; i++) {
       formInputs[i].disabled = false;
@@ -66,7 +64,9 @@
     }
   }();
 
-  adressMarker.setAttribute('disabled', 'disabled');
+  window.setAdressDisable = function () {
+    adressMarker.setAttribute('disabled', 'disabled');
+  };
 
   window.setAddressValue = function (val) {
     adressMarker.value = parseInt(val.left, 10) + window.getButtonWidth() / 2 + ', ' + (parseInt(val.top, 10) + window.getButtonHeight());
