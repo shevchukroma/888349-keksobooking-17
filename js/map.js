@@ -5,7 +5,6 @@
   var map = document.querySelector('.map');
   var form = document.querySelector('.ad-form');
   var buttonsList = document.querySelector('.map__pins');
-  var offersMock = window.getAdverts;
   var maxLeft = 1200;
   var minLeft = 0;
   var minHeight = 130;
@@ -16,8 +15,8 @@
     evt.preventDefault();
     map.classList.remove('map--faded');
     form.classList.remove('ad-form--disabled');
-    for (var i = 0; i < 8; i++) {
-      newButton = window.renderButton(offersMock[i]);
+    for (var i = 0; i < window.getAdverts.length; i++) {
+      newButton = renderButton(window.getAdverts[i]);
       buttonsList.appendChild(newButton);
     }
     window.enableForm();
