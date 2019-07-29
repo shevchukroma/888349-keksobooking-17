@@ -2,7 +2,7 @@
 var errorPopup = document.querySelector('#error');
 
 (function () {
-  var succesLoad = function (data) {
+  var onSuccess = function (data) {
     window.getAdverts = function () {
       var adverts = [];
       var author;
@@ -35,7 +35,7 @@ var errorPopup = document.querySelector('#error');
   };
 
   window.data = {
-    succes: succesLoad,
+    succes: onSuccess,
     error: errorLoad
   };
 
