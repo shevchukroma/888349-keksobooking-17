@@ -16,7 +16,7 @@
     map.classList.remove('map--faded');
     form.classList.remove('ad-form--disabled');
     for (var i = 0; i < window.getAdverts.length; i++) {
-      newButton = renderButton(window.getAdverts[i]);
+      newButton = window.renderButton(window.getAdverts[i]);
       buttonsList.appendChild(newButton);
     }
     window.enableForm();
