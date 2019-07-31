@@ -3,7 +3,7 @@ var errorPopup = document.querySelector('#error');
 
 (function () {
   var onSucces = function (data) {
-    window.getAdverts = function () {      
+    window.getAdverts = function () {
       return data;
     }();
   };
