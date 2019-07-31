@@ -1,6 +1,6 @@
 'use strict';
 var errorPopup = document.querySelector('#error');
-window.getAdverts = function (){};
+window.getAdverts = function () {};
 
 (function () {
   var onSucces = function (data) {
