@@ -2,23 +2,13 @@
 var errorPopup = document.querySelector('#error');
 
 (function () {
-  var succesHadnler = function (data) {
-    window.getAdverts = function () {
-      var adverts = [];
-      var author;
-      var offer;
-      var location;
-      for (var i = 0; i < data.length; i++) {
-        author = data[i].author;
-        offer = {type: data[i].offer.type};
-        location = data[i].location;
-        adverts.push({author: author, offer: offer, location: location});
-      }
-      return adverts;
+  var onSucces = function (data) {
+    window.getAdverts = function () {      
+      return data;
     }();
   };
 
-  var errorHadnler = function () {
+  var onError = function () {
     errorPopup.style.position = 'absolute';
     errorPopup.textContent = 'ERROR';
     errorPopup.style.fontSize = '40px';
@@ -34,5 +24,5 @@ var errorPopup = document.querySelector('#error');
     errorPopup.style.height = '200px';
   };
 
-  window.load(succesHadnler, errorHadnler);
+  window.load(onSucces, onError);
 })();
