@@ -2,7 +2,7 @@
 var errorPopup = document.querySelector('#error');
 
 (function () {
-  var onSuccess = function (data) {
+  var succesHadnler = function (data) {
     window.getAdverts = function () {
       var adverts = [];
       var author;
@@ -18,7 +18,7 @@ var errorPopup = document.querySelector('#error');
     }();
   };
 
-  var errorLoad = function () {
+  var errorHadnler = function () {
     errorPopup.style.position = 'absolute';
     errorPopup.textContent = 'ERROR';
     errorPopup.style.fontSize = '40px';
@@ -34,10 +34,5 @@ var errorPopup = document.querySelector('#error');
     errorPopup.style.height = '200px';
   };
 
-  window.data = {
-    succes: onSuccess,
-    error: errorLoad
-  };
-
-  window.load(window.data.succes, window.data.error);
+  window.load(succesHadnler, errorHadnler);
 })();
