@@ -13,10 +13,11 @@
 
   mainButton.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
+    var offers = window.getAdverts;
     map.classList.remove('map--faded');
     form.classList.remove('ad-form--disabled');
-    for (var i = 0; i < window.getAdverts.length; i++) {
-      newButton = window.renderButton(window.getAdverts[i]);
+    for (var i = 0; i < 8; i++) {
+      newButton = window.renderButton(offers[i]);
       buttonsList.appendChild(newButton);
     }
     window.enableForm();
