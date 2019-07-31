@@ -10,10 +10,11 @@
   var minHeight = 130;
   var maxHeight = 630;
   var newButton;
+  var offers = [];
 
   mainButton.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
-    var offers = window.getAdverts;
+    offers = window.getAdverts;
     map.classList.remove('map--faded');
     form.classList.remove('ad-form--disabled');
     for (var i = 0; i < 8; i++) {
