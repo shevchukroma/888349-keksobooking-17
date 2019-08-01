@@ -10,18 +10,14 @@
   var minHeight = 130;
   var maxHeight = 630;
   var newButton;
-  var offers = [];
   var errorPopup = document.querySelector('#error');
-  window.getAdverts = function () {};
 
   mainButton.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
-    offers = window.getAdverts;
     map.classList.remove('map--faded');
     form.classList.remove('ad-form--disabled');
-    for (var i = 0; i < 8; i++) {
-      newButton = window.renderButton(offers[i]);
-      buttonsList.appendChild(newButton);
+    for (var i = 0; i < buttonsList.querySelectorAll('.map__pin').length; i++) {
+      buttonsList.querySelectorAll('.map__pin')[i].style.display = 'block';
     }
     window.enableForm();
     window.disableAddressMarker();
@@ -66,9 +62,11 @@
   });
 
   var onSucces = function (data) {
-    window.getAdverts = function () {
-      return data;
-    }();
+    for (var i = 0; i < 8; i++) {
+      newButton = window.renderButton(data[i]);
+      newButton.style.display = 'none';
+      buttonsList.appendChild(newButton);
+    }
   };
 
   var onError = function () {
